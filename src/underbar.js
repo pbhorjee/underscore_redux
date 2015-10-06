@@ -329,7 +329,7 @@
       if (!results[strArgs]) {
         results[strArgs] = func.apply(this, arguments);
       }
-      
+
       return results[strArgs];
     };
   };
@@ -341,6 +341,12 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    var argsArr = Array.prototype.slice.call(arguments, 2);
+
+    setTimeout(function() {
+      // func(argsArr);
+      func.apply(this, argsArr);
+    }, wait);
   };
 
 
